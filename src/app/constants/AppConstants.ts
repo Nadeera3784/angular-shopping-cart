@@ -1,0 +1,14 @@
+export const AppConstants = {
+    ADD_TOAST         : 'ADD_TOAST',
+    REMOVE_TOAST      : 'REMOVE_TOAST',
+    LOAD_PRODUCTS     : 'LOAD_PRODUCTS',
+    ADD_PRODUCT       : 'ADD_PRODUCT',
+    ADD_TO_CART       : 'ADD_TO_CART',
+    UPDATE_QTY        : 'UPDATE_QTY',
+    CLEAR_CART        : 'CLEAR_CART',
+    CATEGORY_FILTER   : 'CATEGORY_FILTER',
+    LOAD_CART_ITEMS   : 'LOAD_CART_ITEMS',
+    REMOVE_FROM_CART  : 'REMOVE_FROM_CART',
+    INCREASE_QTY      : 'INCREASE_QTY',
+    DECREASE_QTY      : 'DECREASE_QTY',
+}

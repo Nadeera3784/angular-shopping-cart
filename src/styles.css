@@ -1,0 +1,25 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.pt-50{
+    padding-top: 50px !important;
+}
+
+.pt-5{
+    padding-top: 5px !important;
+}
+
+.pt-20{
+    padding-top: 20px !important;
+}
+
+.mt-5{
+    margin-top: 5px !important;
+}
+
+.mt-20{
+    margin-top: 20px !important;
+}
+
+body {
+    padding-top: 50px;
+}

@@ -1,0 +1,65 @@
+<div class="container pt-50">
+   <div class="row">
+       <div class="col-md-3">
+         <div class="panel panel-default">
+            <div class="panel-body">
+               <h2 class="text-success">${{ (cart | async)?.total}}</h2>
+
+               <a *ngIf="(cart | async)?.count" class="btn btn-default btn-lg btn-block" routerLink="/cart">Go to Cart</a>
+            </div>
+            <div class="panel-footer">
+              <button type="button" class="btn btn-xs btn-default" (click)="onClearCart()">Clear</button> 
+            
+              <span class="label label-default pull-right">{{ (cart | async)?.count}}</span></div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">Categories</div>
+             <div class="panel-body">
+                <div class="list-group">
+                  <button type="button" class="list-group-item" (click)="onClickCategoryFilterAll()">All</button>
+                  <button type="button" class="list-group-item" (click)="onClickCategoryFilter('Webcams')">Webcams</button>
+                  <button type="button" class="list-group-item" (click)="onClickCategoryFilter('Mouse')">Mouse</button>
+                  <button type="button" class="list-group-item" (click)="onClickCategoryFilter('Keyboard')">Keyboard</button>
+                  <button type="button" class="list-group-item" (click)="onClickCategoryFilter('Converters')">Converters</button>
+                  <button type="button" class="list-group-item" (click)="onClickCategoryFilter('Card Readers')">Card Readers</button>
+                  <button type="button" class="list-group-item" (click)="onClickCategoryFilter('Cables')">Cables</button>
+                </div>
+            </div>
+          </div>
+
+       </div>
+       <div class="col-md-9">
+          <div class="row" *ngIf="!show_filter">
+            <div class="col-md-3"  *ngFor="let t of products | async"> 
+               <div class="thumbnail">
+                   <img src="../../assets/images/{{t.image}}" alt="product image">
+                   <div class="caption">
+                     <h4>{{t.title}}</h4>
+                     <p>
+                         <span class="text-success">${{t.price}}</span> 
+                     </p>
+                     <p><button type="button" class="btn btn-block btn-success" (click)="onAddToCart(t)"> Add to Cart</button></p>
+                   </div>
+               </div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="show_filter">
+            <div class="col-md-3"  *ngFor="let t of filtered_proudcts | async"> 
+               <div class="thumbnail">
+                   <img src="../../assets/images/{{t.image}}" alt="product image">
+                   <div class="caption">
+                     <h4>{{t.title}}</h4>
+                     <p>
+                         <span class="text-success">${{t.price}}</span> 
+                     </p>
+                     <p><button type="button" class="btn btn-block btn-success" (click)="onAddToCart(t)">Add to Cart</button></p>
+                   </div>
+               </div>
+            </div>
+          </div>
+
+      </div>
+   </div>
+</div>

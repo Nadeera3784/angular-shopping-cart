@@ -1,0 +1,164 @@
+<div class="container pt-50">
+    <div class="row">
+
+        <div class="col-md-12 well">
+          
+          <div class="clearfix">
+             <div class="pull-left">
+                 <a routerLink="/" class="btn btn-default">Back to Shop</a>
+             </div>
+             <div class="pull-right">
+                <p>Checkout</p>
+           </div>
+          </div>
+
+          <div class="row mt-20">
+
+            <div class="col-md-7">
+                <div class="row">
+                <form (ngSubmit)="onCheckoutSubmit()" [formGroup]="checkOutForm">
+                    <div class="col-xs-12">
+                         <h3>Billing Details</h3>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="firstname">First name</label>
+                            <input type="text" class="form-control" name="firstname" formControlName="firstname" required>
+                                <div *ngIf="checkOutForm.get('firstname').invalid &&  checkOutForm.get('firstname').errors &&  (checkOutForm.get('firstname').dirty || checkOutForm.get('firstname').touched)">
+                                    <div class="alert alert-danger"
+                                        *ngIf="checkOutForm.get('firstname').hasError('required')">
+                                        First name is required.
+                                   </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="lastname">Last name</label>
+                            <input type="text" class="form-control" name="lastname" formControlName="lastname" required>
+                            <div *ngIf="checkOutForm.get('lastname').invalid &&  checkOutForm.get('lastname').errors &&  (checkOutForm.get('lastname').dirty || checkOutForm.get('lastname').touched)">
+                                <div class="alert alert-danger"
+                                    *ngIf="checkOutForm.get('lastname').hasError('required')">
+                                    Last name is required.
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" formControlName="email" required>
+                            <div *ngIf="checkOutForm.get('email').invalid &&  checkOutForm.get('email').errors &&  (checkOutForm.get('email').dirty || checkOutForm.get('email').touched)">
+                                <div class="alert alert-danger"
+                                    *ngIf="checkOutForm.get('email').hasError('required')">
+                                    Email is required.
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" name="address" formControlName="address" required>
+                            <div *ngIf="checkOutForm.get('address').invalid &&  checkOutForm.get('address').errors &&  (checkOutForm.get('address').dirty || checkOutForm.get('address').touched)">
+                                <div class="alert alert-danger"
+                                    *ngIf="checkOutForm.get('address').hasError('required')">
+                                    Address is required.
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" name="city" formControlName="city" required>
+                            <div *ngIf="checkOutForm.get('city').invalid &&  checkOutForm.get('city').errors &&  (checkOutForm.get('city').dirty || checkOutForm.get('city').touched)">
+                                <div class="alert alert-danger"
+                                    *ngIf="checkOutForm.get('city').hasError('required')">
+                                    City is required.
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" class="form-control" name="state" formControlName="state" required>
+                            <div *ngIf="checkOutForm.get('state').invalid &&  checkOutForm.get('state').errors &&  (checkOutForm.get('state').dirty || checkOutForm.get('state').touched)">
+                                <div class="alert alert-danger"
+                                    *ngIf="checkOutForm.get('state').hasError('required')">
+                                    State is required.
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="zip">Zip</label>
+                            <input type="text" class="form-control" name="zip" formControlName="zip" required>
+                            <div *ngIf="checkOutForm.get('zip').invalid &&  checkOutForm.get('zip').errors &&  (checkOutForm.get('zip').dirty || checkOutForm.get('zip').touched)">
+                                <div class="alert alert-danger"
+                                    *ngIf="checkOutForm.get('zip').hasError('required')">
+                                    Zip is required.
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group pt-5">
+                            <button type="submit" class="btn btn-block btn-success" [disabled]="checkOutForm.invalid">Place Order</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+            
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-12">
+                      <h3>Your Order</h3>
+                    </div>
+                   <div class="col-md-12">
+                    <table class="table panel" *ngIf="cart_items.length else noItemsInCart">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Subtotal</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let item of cart_items">
+                            <td>{{item.title}}</td>
+                            <td>
+                                {{item.qty}}
+                            </td>
+                            <td>{{item.price | currency}}</td>
+                            <td>{{ (item.price * item.qty) | currency }}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                Total
+                            </td>
+                            <td>{{cart_total | currency }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                   </div>
+                   <div class="col-md-12">
+                        <p>Shipping :   {{checkOutForm.get('address').value}}</p>
+                   </div>
+                </div>
+            </div>
+          </div>
+
+        </div>
+
+    </div>
+ </div>
+ 
